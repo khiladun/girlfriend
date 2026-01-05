@@ -1,0 +1,864 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>For My Super Jo 💕</title>
+<link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;700&family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet">
+
+<style>
+/* Reset & full height */
+html, body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  font-family: 'Georgia', serif;
+  overflow-x: hidden;
+}
+
+/* Simple elegant background */
+body {
+  background: linear-gradient(135deg, #fff0f5 0%, #ffebf3 100%);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  overflow: auto;
+  padding: 20px;
+}
+
+/* Subtle floating hearts */
+.heart {
+  position: absolute;
+  background: #e75480;
+  transform: rotate(-45deg);
+  border-radius: 3px;
+  animation: floatUp 8s linear infinite;
+  pointer-events: none;
+  opacity: 0.3;
+}
+
+.heart::before,
+.heart::after {
+  content: "";
+  position: absolute;
+  background: inherit;
+  border-radius: 50%;
+}
+
+.heart::before {
+  top: -50%;
+  left: 0;
+}
+
+.heart::after {
+  left: 50%;
+  top: 0;
+}
+
+@keyframes floatUp {
+  0% {
+    transform: translateY(100vh) rotate(-45deg);
+    opacity: 0;
+  }
+  10% {
+    opacity: 0.3;
+  }
+  90% {
+    opacity: 0.3;
+  }
+  100% {
+    transform: translateY(-100px) rotate(-45deg);
+    opacity: 0;
+  }
+}
+
+/* Main wrapper */
+.main-container {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  max-width: 800px;
+  width: 100%;
+  gap: 30px;
+}
+
+/* Book container - clean design */
+.book-container {
+  position: relative;
+  z-index: 3;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 500px;
+}
+
+.book {
+  position: relative;
+  width: 340px;
+  height: 500px;
+  perspective: 1500px;
+}
+
+/* Pages - clean design */
+.page {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  transform-origin: left;
+  transform-style: preserve-3d;
+  transition: transform 0.8s cubic-bezier(0.23, 1, 0.32, 1);
+  border-radius: 10px;
+}
+
+.page .front,
+.page .back {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background: rgba(255,255,255,0.98);
+  backface-visibility: hidden;
+  border-radius: 10px;
+  padding: 25px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+  border: 1px solid rgba(231,84,128,0.1);
+  overflow: hidden;
+}
+
+.page .back {
+  transform: rotateY(180deg);
+}
+
+.page.flipped {
+  transform: rotateY(-180deg);
+}
+
+/* Stack order */
+.page:nth-child(1) { z-index: 4; }
+.page:nth-child(2) { z-index: 3; }
+.page:nth-child(3) { z-index: 2; }
+.page:nth-child(4) { z-index: 1; }
+
+/* Page content styling */
+.page-content {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px;
+}
+
+/* Image container - clean, no numbers */
+.image-container {
+  width: 85%;
+  height: 200px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.image-container img {
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;
+  border: 3px solid rgba(231, 84, 128, 0.4);
+  border-radius: 14px;
+  padding: 6px;          
+  background: #fff;      
+}
+
+
+.page-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.5s ease;
+}
+
+.page-image:hover {
+  transform: scale(1.03);
+}
+
+/* Placeholder image style */
+.placeholder-img {
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(135deg, #fff0f5 0%, #ffebf3 100%);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  color: #e75480;
+  font-weight: bold;
+}
+
+/* Text styling - elegant */
+.page-text {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 10px;
+}
+
+h1 {
+  color: #e75480;
+  margin-bottom: 15px;
+  font-size: 1.8rem;
+  font-family: 'Playfair Display', serif;
+  position: relative;
+  padding-bottom: 10px;
+}
+
+h1::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 30%;
+  width: 40%;
+  height: 1px;
+  background: rgba(231,84,128,0.3);
+}
+
+p {
+  font-size: 1.1rem;
+  line-height: 1.6;
+  color: #666;
+  max-width: 280px;
+  font-style: italic;
+  margin-top: 10px;
+}
+
+/* Navigation section - clean */
+.navigation-section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+  width: 100%;
+  padding: 10px;
+}
+
+.nav {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  max-width: 340px;
+  gap: 15px;
+}
+
+/* Clean buttons */
+button {
+  background: #e75480;
+  color: white;
+  border: none;
+  padding: 12px 24px;
+  border-radius: 25px;
+  cursor: pointer;
+  box-shadow: 0 4px 12px rgba(231,84,128,0.3);
+  transition: all 0.3s ease;
+  font-size: 1rem;
+  font-weight: 500;
+  flex: 1;
+  font-family: 'Georgia', serif;
+}
+
+button:hover:not(:disabled) {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 15px rgba(231,84,128,0.4);
+  background: #ff6b9d;
+}
+
+button:active:not(:disabled) {
+  transform: translateY(0);
+}
+
+button:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+  transform: none !important;
+}
+
+/* Simple page indicator */
+.page-indicator {
+  color: #e75480;
+  font-size: 1rem;
+  font-weight: 500;
+  background: rgba(255,255,255,0.9);
+  padding: 8px 20px;
+  border-radius: 20px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+   margin-top: 30px;
+}
+
+/* Simple love letter */
+.love-letter {
+  color: #e75480;
+  font-size: 0.9rem;
+  opacity: 0.7;
+  font-style: italic;
+  text-align: center;
+  margin-top: 10px;
+}
+
+/* Secret message popup */
+/* Secret message popup - Bigger version */
+.secret-message {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) scale(0);
+  background: rgba(255, 255, 255, 0.98);
+  padding: 35px;
+  border-radius: 18px;
+  box-shadow: 0 25px 50px rgba(0, 0, 0, 0.2);
+  z-index: 1000;
+  text-align: center;
+  max-width: 650px;   /* Much wider */
+  width: 90%;         /* Increased width percentage */
+  max-height: 85vh;   /* Limit height to 85% of viewport */
+  overflow-y: auto;   /* Add scroll if content is too tall */
+  transition: transform 0.4s ease;
+  border: 2px solid rgba(231, 84, 128, 0.3);
+}
+
+/* Make the text inside bigger */
+.secret-message p {
+  font-size: 1.1rem;
+  line-height: 1.7;
+  color: #333;
+  margin: 20px 0;
+  text-align: left;
+  white-space: pre-line; /* Preserves intentional line breaks */
+  font-style: italic;
+  max-width: 100%;
+  padding: 0 10px;
+}
+
+/* Add a bigger close button */
+.secret-message .close-btn {
+  position: absolute;
+  top: 15px;
+  right: 20px;
+  font-size: 28px;
+  color: rgba(231, 84, 128, 0.8);
+  cursor: pointer;
+  background: none;
+  border: none;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s ease;
+}
+
+.secret-message .close-btn:hover {
+  background: rgba(231, 84, 128, 0.1);
+  color: rgba(231, 84, 128, 1);
+}
+
+/* Title with bigger font */
+.secret-message h3 {
+  font-size: 2rem;
+  color: rgba(231, 84, 128, 1);
+  margin: 10px 0 20px 0;
+  font-weight: 600;
+  font-family: 'Playfair Display', serif;
+}
+
+.secret-message.active {
+  transform: translate(-50%, -50%) scale(1);
+}
+
+/* Optional: Add a subtle background overlay */
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  z-index: 999;
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.3s ease;
+}
+
+.overlay.active {
+  opacity: 1;
+  visibility: visible;
+}
+
+/* Scrollbar styling for secret message */
+.secret-message::-webkit-scrollbar {
+  width: 8px;
+}
+
+.secret-message::-webkit-scrollbar-track {
+  background: rgba(231, 84, 128, 0.1);
+  border-radius: 4px;
+}
+
+.secret-message::-webkit-scrollbar-thumb {
+  background: rgba(231, 84, 128, 0.3);
+  border-radius: 4px;
+}
+
+.secret-message::-webkit-scrollbar-thumb:hover {
+  background: rgba(231, 84, 128, 0.5);
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+  .main-container {
+    gap: 20px;
+  }
+  
+  .book {
+    width: 300px;
+    height: 450px;
+  }
+  
+  .image-container {
+    height: 180px;
+    width: 90%;
+  }
+  
+  h1 {
+    font-size: 1.5rem;
+  }
+  
+  p {
+    font-size: 1rem;
+    max-width: 250px;
+  }
+  
+  button {
+    padding: 10px 20px;
+    font-size: 0.95rem;
+  }
+}
+
+@media (max-width: 400px) {
+  .book {
+    width: 280px;
+    height: 420px;
+  }
+  
+  .page .front, .page .back {
+    padding: 15px;
+  }
+  
+  .image-container {
+    height: 160px;
+    margin-bottom: 20px;
+  }
+  
+  h1 {
+    font-size: 1.3rem;
+  }
+  
+  .nav {
+    max-width: 280px;
+  }
+  
+  button {
+    padding: 8px 16px;
+    font-size: 0.9rem;
+  }
+}
+
+/* Countdown full screen */
+#countdownScreen {
+  position: fixed;
+  inset: 0;
+  background: linear-gradient(135deg, #fff0f5, #ffebf3);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 99999;
+}
+
+.countdown-card {
+  background: white;
+  padding: 30px;
+  border-radius: 20px;
+  text-align: center;
+  box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+  max-width: 320px;
+  width: 90%;
+}
+
+.countdown-card img {
+  width: 100%;
+  border-radius: 15px;
+  margin-bottom: 20px;
+  border: 3px solid rgba(231,84,128,0.3);
+}
+
+.countdown-card h2 {
+  font-family: 'Playfair Display', serif;
+  color: #e75480;
+  margin-bottom: 10px;
+}
+
+#timer {
+  font-size: 1.6rem;
+  font-weight: bold;
+  color: #e75480;
+  letter-spacing: 2px;
+  margin-top: 10px;
+}
+
+</style>
+</head>
+
+<body>
+
+
+
+<!-- Subtle floating hearts -->
+<div id="heartsContainer"></div>
+
+<!-- Secret Message Popup -->
+<!-- Add this overlay div after the hearts container -->
+<div class="overlay" id="overlay" onclick="closeSecretMessage()"></div>
+
+<!-- Update the secret message HTML -->
+<div class="secret-message" id="secretMessage">
+  <h3>My Dearest Jo 💌</h3>
+  <p>HAPPY BIRTHDAY TO YOUUU . May Allah bless you . Semoga Allah memperluaskan rezeki awak di dunia dan di akhirat. May this happy day bring you joy. Orang rase sayang yang first orang type panjang" ni(nampak la effort kan) . Like kalau birthday orang lain , just wish happy birthday pastu da . Tapi bila birthday sayang , rase mcm nak wish panjang" . Kalo bole panjang mcm relay kita(sweet en) .Short Form bole en. Org nak sayang gembirakan diri sendiri mcm msne sayang gembirakan orang lain .  X fair kalau sayang sedih tapi orang lain gembira . Org nak ckp org mintak maaf kalo org ade buat sayang x happy mcm sayang nak.Tp kalo sayang rase mcm xde sape ke lonely ke igt org slalu ade untuk sayang(ni betul ni). 
+  Org mintak maaf from bottom of my heart sebab slalu buat sayang emo, merajuk, dan terasa. Kadang-kadang org tak sedar kata-kata org, perangai org. Org tahu, perasaan tu bukan benda kecik, dan org menyesal(betul x tipu) sebab org sepatutnya jadi tempat sayang rasa tenang, bukan tempat sayang rasa penat.
+  Ada masa org terlalu ego, Over confident yang sayang akan faham, sampai org lupa yang sayang ada hati yang lg manja dr org. Org minta maaf sebab x jaga perasaan sayang baik", slalu sgt janji tp x buat pun. Kalau ada malam sayang menangis dalam diam, atau pendam perasaan x bgtau kat org, org mintak maafffff sgt".
+  Org xdela perfect(jari pun x cukup). Org banyak kurang, banyak silap, dan still belajar. Tapi satu benda yang org harap sayang tahu, setiap kali sayang terasa, org pun sebenarnya rase bersalah sebab jadi punca. Org takut satgi lost feeling, takut satu hari nanti sayang penat dan pilih untuk lepaskan org.
+  Terima kasih SANGAT" sebab masih sabar dengan org, masih bertahan walaupun org buat macam". Terima kasih sebab pilih untuk faham orang walaupun orang sendiri kadang-kadang tak pandai faham girlfriend. Kalau kasih sayang orang pernah buat sayang rasa tak cukup, org minta maaf. Kalau rase org pernah buat sayang rasa tak dihargai, org menyesal sepenuh hati.
+  Sempena Birthday sayang, orang tak nak janji bulan dan bintang. Org cuma nak janji akan cuba jadi lelaki yang lebih memahami, lebih jujur, dan lebih menghargai setiap perasaan sayang. Orang nak belajar jaga hati girlfriend sebagaimana girlfriend jaga hati org selama ni.
+  Selamat hari lahir, sayang. Kalau dunia ni pernah buat awak penat, biarlah orang jadi tempat awak pulang(Sweet DOOH). Dan kalo suatu hari nanti orang buat lagi dengan kesilapan yang sama, harap sayang x jemu tegur org.Tegur je banyak" org pun suka gak.Tu je dr org.Lebih" bayar ah.MUAWWWWHWHWHHWHWHHHHHHHH💖(xde chatgpt nah ni ikhlas)</p>
+  <button onclick="closeSecretMessage()" style="margin-top: 20px; padding: 10px 25px; font-size: 1.1rem; background: #e75480; color: white; border: none; border-radius: 25px; cursor: pointer; box-shadow: 0 4px 12px rgba(231,84,128,0.3); transition: all 0.3s ease;">Close</button>
+</div>
+
+<!-- Main Container -->
+<div class="main-container">
+  <!-- Book Section -->
+  <div class="book-container">
+    <div class="book">
+
+      <!-- Page 1 -->
+      <div class="page">
+        <div class="front">
+          <div class="page-content">
+            <div class="image-container">
+              <img src="1.jpg" alt="My Picture">
+            </div>
+            <div class="page-text">
+              <h1>My Dearest GIRLFRIEND yg COMELLLLLLLLL 💌</h1>
+              <p>Buku ni untuk girlfriend sorang je.</p>
+            </div>
+          </div>
+        </div>
+        <div class="back"></div>
+      </div>
+
+      <!-- Page 2 -->
+      <div class="page">
+        <div class="front">
+          <div class="page-content">
+            <div class="image-container">
+              <img src="2.jpg" alt="My Picture">
+            </div>
+            <div class="page-text">
+              <h1>My Beautiful Baby 🤍</h1>
+              <p>Happy Birthday to my most beautiful,manja,cepat emo,GIRLFRIEND</p>
+			  <p>I LOVEEE U SO MUCHHHH.</p>
+            </div>
+          </div>
+        </div>
+        <div class="back"></div>
+      </div>
+
+      <!-- Page 3 -->
+      <div class="page">
+        <div class="front">
+          <div class="page-content">
+            <div class="image-container">
+              <img src="3.jpg" alt="My Picture">
+            </div>
+            <div class="page-text">
+              <h1>Putri Julia Maisarah 🌷</h1>
+              <p>Tenkiuu sebab ade dengan orang selalu.Walaupun orang banyak buat girlfriend terasa.</p>
+            </div>
+          </div>
+        </div>
+        <div class="back"></div>
+      </div>
+
+      <!-- Page 4 -->
+      <div class="page">
+        <div class="front">
+          <div class="page-content">
+            <div class="image-container">
+              <img src="4.jpg" alt="My Picture">
+            </div>
+            <div class="page-text">
+              <h1>To My Princess 💖</h1>
+              <p>I hope ur speacial day will bring u much joy and hapiness.I love u so much in every way possible.</p>
+            </div>
+          </div>
+        </div>
+        <div class="back"></div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- Navigation Section -->
+  <div class="navigation-section">
+    <div class="page-indicator">
+      Page <span id="currentPage">1</span> of <span id="totalPages">4</span>
+    </div>
+    <div class="nav">
+      <button id="backBtn">← Previous</button>
+      <button id="nextBtn">Next →</button>
+    </div>
+    <button id="secretBtn" style="margin-top: 10px; background: rgba(231,84,128,0.9);">💝 Special Message</button>
+    
+    <!-- Simple love letter -->
+    <div class="love-letter">
+      Made with love for my Super Jo • Forever Yours 💕
+    </div>
+  </div>
+</div>
+
+<script>
+
+// ============================================
+// USING YOUR LOCAL IMAGES
+// ============================================
+
+const pages = document.querySelectorAll(".page");
+const totalPages = pages.length;
+let current = 0;
+
+const nextBtn = document.getElementById("nextBtn");
+const backBtn = document.getElementById("backBtn");
+const currentPageEl = document.getElementById("currentPage");
+const totalPagesEl = document.getElementById("totalPages");
+const secretBtn = document.getElementById("secretBtn");
+const secretMessage = document.getElementById("secretMessage");
+
+// IMPORTANT: Use your local image paths here
+// If your HTML file is in a different folder than the images, 
+// you might need to adjust the paths
+const imageUrls = [
+  "1.jpg",  // First image
+  "2.jpg",  // Second image  
+  "3.jpg",  // Third image
+  "3.jpg"   // Fourth image (reusing the third one since you have 3 images)
+];
+
+// Alternative paths if HTML is in same folder as birthday folder:
+// const imageUrls = [
+//   "birthday/1.jpg",
+//   "birthday/2.jpg", 
+//   "birthday/3.jpg",
+//   "birthday/3.jpg"
+// ];
+
+// Initialize
+totalPagesEl.textContent = totalPages;
+updatePageIndicator();
+
+// ============================================
+// SIMPLIFIED FUNCTIONS
+// ============================================
+
+// Create subtle hearts
+function createHeart() {
+  const heart = document.createElement("div");
+  heart.className = "heart";
+  heart.style.left = Math.random() * window.innerWidth + "px";
+  const size = 10 + Math.random() * 15;
+  heart.style.width = heart.style.height = size + "px";
+  heart.style.animationDuration = 6 + Math.random() * 6 + "s";
+  
+  document.getElementById("heartsContainer").appendChild(heart);
+
+  setTimeout(() => heart.remove(), 8000);
+}
+
+// Load images
+function loadImages() {
+  for (let i = 0; i < imageUrls.length; i++) {
+    const imageContainer = document.getElementById(`image${i + 1}`);
+    
+    // Create image
+    const img = document.createElement('img');
+    img.src = imageUrls[i];
+    img.alt = `Our Memory ${i + 1}`;
+    img.className = 'page-image';
+    
+    img.onerror = function() {
+      console.error(`Failed to load image: ${imageUrls[i]}`);
+      imageContainer.innerHTML = `
+        <div class="placeholder-img">
+          <div style="font-size: 2.5rem;">💕</div>
+          <div style="margin-top: 10px; font-size: 0.9rem;">Memory ${i + 1}</div>
+          <div style="margin-top: 5px; font-size: 0.7rem; color: #999;">Place image in same folder</div>
+        </div>
+      `;
+    };
+    
+    img.onload = function() {
+      console.log(`Successfully loaded image: ${imageUrls[i]}`);
+      img.style.opacity = '0';
+      setTimeout(() => {
+        img.style.transition = 'opacity 0.8s ease';
+        img.style.opacity = '1';
+      }, 100);
+    };
+    
+    imageContainer.appendChild(img);
+  }
+}
+
+// Secret message function
+// Secret message function
+function showSecretMessage() {
+  secretMessage.classList.add('active');
+  overlay.classList.add('active');  // Show overlay
+  createHearts();
+}
+
+function closeSecretMessage() {
+  secretMessage.classList.remove('active');
+  overlay.classList.remove('active');  // Hide overlay
+}
+
+// Add overlay element in your HTML
+// Add this at the top of your body, after the hearts container:
+// <div class="overlay" id="overlay" onclick="closeSecretMessage()"></div>
+
+// Update your secret button event listener:
+secretBtn.addEventListener('click', showSecretMessage);
+
+// Initialize overlay element
+const overlay = document.getElementById('overlay');
+
+// Also close when pressing ESC key
+document.addEventListener('keydown', function(e) {
+  if (e.key === 'Escape' && secretMessage.classList.contains('active')) {
+    closeSecretMessage();
+  }
+});
+
+// Create few hearts
+function createHearts() {
+  for (let i = 0; i < 15; i++) {
+    setTimeout(createHeart, i * 100);
+  }
+}
+
+// ============================================
+// PAGE NAVIGATION
+// ============================================
+
+function updateButtons() {
+  backBtn.disabled = current === 0;
+  nextBtn.disabled = current === totalPages - 1;
+}
+
+
+function updatePageIndicator() {
+  currentPageEl.textContent = current + 1;
+}
+
+nextBtn.onclick = () => {
+  if (current < totalPages) {
+    pages[current].classList.add("flipped");
+    current++;
+    updateButtons();
+    updatePageIndicator();
+    createHearts();
+  }
+};
+
+backBtn.onclick = () => {
+  if (current > 0) {
+    current--;
+    pages[current].classList.remove("flipped");
+    updateButtons();
+    updatePageIndicator();
+  }
+};
+
+// Secret button
+secretBtn.addEventListener('click', showSecretMessage);
+
+// Create initial subtle hearts
+setInterval(createHeart, 1500);
+
+// Initial hearts
+createHearts();
+
+// Update buttons initially
+updateButtons();
+
+// Debug: Check if images are loading
+console.log('Image URLs being loaded:', imageUrls);
+console.log('Make sure images are in the correct folder relative to this HTML file');
+</script>
+<script>
+(function () {
+
+  const openTime = new Date(2026, 0, 6, 0, 0).getTime(); // 6 Jan 2026
+
+  const countdownScreen = document.getElementById("countdownScreen");
+  const timerEl = document.getElementById("timer");
+  const mainContainer = document.querySelector(".main-container");
+
+  if (!countdownScreen || !timerEl || !mainContainer) {
+    console.error("Countdown elements not found");
+    return;
+  }
+
+  mainContainer.style.display = "none";
+
+  function updateCountdown() {
+    const now = Date.now();
+    const distance = openTime - now;
+
+    if (distance <= 0) {
+      countdownScreen.style.display = "none";
+      mainContainer.style.display = "flex";
+      return;
+    }
+
+    const days = Math.floor(distance / 86400000);
+    const hours = Math.floor((distance % 86400000) / 3600000);
+    const minutes = Math.floor((distance % 3600000) / 60000);
+    const seconds = Math.floor((distance % 60000) / 1000);
+
+    timerEl.textContent =
+      `${days}d : ${hours}h : ${minutes}m : ${seconds}s`;
+  }
+
+  updateCountdown();
+  setInterval(updateCountdown, 1000);
+
+})();
+</script>
+
+</body>
+</html>
